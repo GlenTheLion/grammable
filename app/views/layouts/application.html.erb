@@ -10,6 +10,14 @@
   </head>
 
   <body>
+      <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <% if notice.present? %>
+          <p class="alert alert-info"><%= notice %></p>
+        <% end %>
+        <% if alert.present? %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+      </div>
     <%= yield %>
   </body>
 </html>
