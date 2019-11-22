@@ -5,6 +5,7 @@ FactoryBot.define do
     end
     password { "Password" } 
     password_confirmation { "Password" }
+    fullname {"TestUser"}
   end
 
   factory :gram do

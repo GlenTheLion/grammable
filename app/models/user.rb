@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   has_many :grams
   has_many :comments
+  validates :fullname, presence: true, length: {minimum: 3, maximum: 40}
 end
