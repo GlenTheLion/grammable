@@ -3,26 +3,52 @@
   <head>
     <title>Grammable</title>
     <%= csrf_meta_tags %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body>
-    <% if current_user %>
-      You're signed in as <%= current_user.email %>.
-      <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign In", new_user_session_path %>
-      <%= link_to "Sign Up", new_user_registration_path %>
-    <% end %>
-    <% if notice.present? %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
 
-    <% if alert.present? %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+    <link href='https://fonts.googleapis.com/css?family=Dancing+Script:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:400,100,300,600,700' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body>
+    <div class="top-nav">
+      <div class="col-12 col-md-8 offset-md-2">
+        <div class="brand float-left">
+          <%= link_to 'Grammable', root_path %>
+        </div>
+        <div class="add float-right">
+
+          <% if current_user %>
+
+          <% if current_user.fullname.present? %> 
+            <span class="greet">Hello, <strong><%= current_user.fullname %></strong>!</span><br />
+          <% else %> 
+            <span class="greet">Hello, <strong><%= current_user.email %></strong>!</span><br />
+          <% end %>
+              <%= link_to 'New Gram', new_gram_path %>    
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+            <% else %>
+            <%= link_to 'Sign In', new_user_session_path %>
+            <%= link_to 'Sign Up', new_user_registration_path %>
+          <% end %>
+        </div>
+        <br class="clear-fix" />
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+      <% if notice.present? %>
+        <p class="alert alert-info"><%= notice %></p>
+      <% end %>
+      <% if alert.present? %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+    </div>
 
     <%= yield %>
 
+    <br /><br /><br /><br />
   </body>
 </html>
